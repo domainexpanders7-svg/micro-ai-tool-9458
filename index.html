@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Power Tool 9458</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --glass-bg: rgba(255, 255, 255, 0.07);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-color: #e0e0e0;
+            --accent: #00bcd4;
+            --transition: 0.3s ease;
+        }
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+        }
+        header, footer {
+            width: 100%;
+            max-width: 960px;
+            margin: 0.5rem auto;
+            text-align: center;
+        }
+        .glass {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 960px;
+            margin: 1rem 0;
+            transition: var(--transition);
+        }
+        .glass:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        h1 {
+            font-weight: 600;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            background: rgba(255,255,255,0.05);
+            border: none;
+            border-radius: 8px;
+            color: var(--text-color);
+            padding: 0.75rem;
+            resize: vertical;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        textarea:focus {
+            outline: none;
+            background: rgba(255,255,255,0.1);
+        }
+        button {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+        }
+        button:hover {
+            background: #0097a7;
+        }
+        #output {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            min-height: 60px;
+            word-break: break-word;
+        }
+        #ad-slot-top, #ad-slot-bottom {
+            width: 100%;
+            max-width: 960px;
+            height: 90px;
+            background: #222;
+            border: 1px dashed #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header id="ad-slot-top">[Ad Slot Top - Placeholder]</header>
+
+    <section class="glass">
+        <h1>AI Power Tool 9458</h1>
+        <p>Enter text below and click "Process" to see the AI-powered transformation.</p>
+        <textarea id="inputText" placeholder="Type something..."></textarea>
+        <button id="processBtn">Process</button>
+        <div id="output" aria-live="polite"></div>
+    </section>
+
+    <footer id="ad-slot-bottom">[Ad Slot Bottom - Placeholder]</footer>
+
+    <script>
+        const btn = document.getElementById('processBtn');
+        const input = document.getElementById('inputText');
+        const output = document.getElementById('output');
+
+        // Mock AI processing: reverse each word and toggle case
+        function mockAI(text) {
+            return text
+                .split(/\s+/)
+                .map(word => word.split('').reverse().join(''))
+                .join(' ')
+                .split('')
+                .map(ch => {
+                    if (ch >= 'a' && ch <= 'z') return ch.toUpperCase();
+                    if (ch >= 'A' && ch <= 'Z') return ch.toLowerCase();
+                    return ch;
+                })
+                .join('');
+        }
+
+        btn.addEventListener('click', () => {
+            const raw = input.value.trim();
+            if (!raw) {
+                output.textContent = 'Please enter some text.';
+                return;
+            }
+            output.textContent = 'Processing...';
+            // Simulate async processing
+            setTimeout(() => {
+                const result = mockAI(raw);
+                output.textContent = result;
+            }, 600);
+        });
+
+        // Optional: Auto-resize textarea
+        input.addEventListener('input', () => {
+            input.style.height = 'auto';
+            input.style.height = (input.scrollHeight) + 'px';
+        });
+    </script>
+</body>
+</html>
